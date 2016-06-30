@@ -1,0 +1,25 @@
+{% set navs = [(url_for('home'),'Home'),(url_for('top_ten'),'Top Tens'),(url_for('work'),'Work With Me'),(url_for('fun'),'Fun Stuff'), (url_for('things'),'Things I Like')] %}
+<head>
+<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-theme.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<div class="container">
+<div class= "header">
+<title>Sam Werbalowsky</title>
+<p class="h1">Sam Werbalowsky</p>
+<div class="navbar">
+<ul class = "list-inline">
+{% for nav in navs: %}
+    <li><a href={{nav[0]}}>{{nav[1]}}</a></li>
+{% endfor %}
+</ul>
+</div>
+</div>
+
+<hr style="margin-top:0" />
+    
+    

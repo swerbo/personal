@@ -4,12 +4,22 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///E:/personal_site/personal_site/new_db.db'
 db = SQLAlchemy(app)
 
-class TopTens(db.Model):
-        id = db.Column(db.Integer, primary_key=True)
-        name = db.Column(db.String(80), unique=True)
+class List_Cats(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    items = db.relationship('list_items', backref='list_cats')
+    __tablename__ = "list_cats"
+    
+    
+              
+class List_Items(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(80), unique=True)
+    master_list = db.Column(db.Integer, db.ForeignKey('list_cats.id'))
+        
         
         
         

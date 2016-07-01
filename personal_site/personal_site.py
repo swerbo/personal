@@ -4,7 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///E:/personal_site/personal_site/new_db.db'
+# first line is for home PC, second is for work
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///E:/personal_site/personal_site/new_db.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Sam/personal_site/personal_site/new_db.db'
 db = SQLAlchemy(app)
 
 class List_Cats(db.Model):
@@ -29,11 +31,11 @@ class List_Items(db.Model):
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    return render_template('hello.html')
     
 @app.route('/top-tens/')
 def top_ten():
-    return 'This is my list of top ten things'
+    return render_template('hello.html')
     
 @app.route('/hello/')
 @app.route('/hello/<name>/')
@@ -42,15 +44,15 @@ def hello(name=None):
     
 @app.route('/work-with-me/')
 def work():
-    return render_template('resume.html')
+    return render_template('hello.html')
     
 @app.route('/fun/')
 def fun():
-    return 'Fun'
+    return render_template('hello.html')
     
 @app.route('/things/')
 def things():
-    return 'Things'
+    return render_template('hello.html')
 
 
 

@@ -15,6 +15,10 @@ class List_Cats(db.Model):
     items = db.relationship('list_items', backref='list_cats')
     __tablename__ = "list_cats"
     
+    def __init__(self, name):
+        self.name = name
+    
+    
     
               
 class List_Items(db.Model):
@@ -44,7 +48,7 @@ def hello(name=None):
     
 @app.route('/work-with-me/')
 def work():
-    return render_template('hello.html')
+    return render_template('resume.html')
     
 @app.route('/fun/')
 def fun():

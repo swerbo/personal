@@ -31,20 +31,14 @@ class Item(db.Model):
         self.category = category
         
         
-        
-        
-        
-
-
-
-
 @app.route('/')
 def home():
     return render_template('hello.html')
     
 @app.route('/top-tens/')
 def top_ten():
-    return render_template('hello.html')
+    categories = Category.query.all()
+    return render_template('top_tens.html')
     
 @app.route('/hello/')
 @app.route('/hello/<name>/')

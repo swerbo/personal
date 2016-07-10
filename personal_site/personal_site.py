@@ -5,26 +5,31 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 # first line is for home PC, second is for work
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///E:/personal_site/personal_site/new_db.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Sam/personal_site/personal_site/new_db.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///E:/personal_site/personal_site/cate_item.db'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Sam/personal_site/personal_site/new_db.db'
 db = SQLAlchemy(app)
 
-class List_Cats(db.Model):
+class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True)
-    items = db.relationship('list_items', backref='list_cats')
-    __tablename__ = "list_cats"
     
     def __init__(self, name):
         self.name = name
-    
-    
-    
-              
-class List_Items(db.Model):
+        
+    def __repr__(self):
+        return '<Category %r>' % self.name
+                      
+class Item(db.Model):
+    __tablename__ = "items"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True)
-    master_list = db.Column(db.Integer, db.ForeignKey('list_cats.id'))
+    name = db.Column(db.String(80))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    category = db.relationship('Category', backref = db.backref('items', lazy='dynamic'))
+    
+    def __init__(self, name, category):
+        self.name = name
+        self.category = category
+        
         
         
         

@@ -38,11 +38,11 @@ def home():
 @app.route('/top-tens/')
 def top_ten():
     categories = Category.query.all()
-    return render_template('top_tens.html')
+    return render_template('top_tens.html', categories = categories)
     
 @app.route('/hello/')
 @app.route('/hello/<name>/')
-def hello(name=None):
+def hello(name):
     return render_template('hello.html', show=name)
     
 @app.route('/work-with-me/')

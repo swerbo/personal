@@ -1,10 +1,29 @@
-<!doctype html>
-{% include "header.html" %}
+{% extends "hello.html" %}
 
-{% block intro %}{% endblock %}
-<hr />
-{% block body %}{% endblock %}
+{% block intro %}This is my dope intro{%endblock%}
+{% block body %}
+
+<div class="container-fluid">
+{% for cat in categories %}
+    <div class="col-md-3">
+    <ol> 
+    {% for item in cat.items %}
+       <li> {{ item.name }} </li>
+    {% endfor %}
+    </ol>
+    </div >
+    
+{% endfor %}   
+<div class="clearfix"></div>
 
 
-<hr />
-{% include "footer.html" %}
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+
